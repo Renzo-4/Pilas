@@ -35,3 +35,4 @@ while pilaFia2:
     pilaFia.append(pilaFia2.pop())
 
 print("Pila restaurada (sin el número eliminado):", pilaFia)
+#
