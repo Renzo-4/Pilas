@@ -1,3 +1,5 @@
+#Metodo LIFO
+
 # Creamos una pila vacía
 pila_nombres = []
 
