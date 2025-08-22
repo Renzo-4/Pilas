@@ -1,36 +1,37 @@
-class Stack:
-  def __init__(self):
-    self.stack = []
+#Metodo FIFO
 
-  def push(self, element):
-    self.stack.append(element)
 
-  def pop(self):
-    if self.isEmpty():
-      return "Stack is empty"
-    return self.stack.pop()
+#  Creamos una cola vacía
+cola_nombres = []
 
-  def peek(self):
-    if self.isEmpty():
-      return "Stack is empty"
-    return self.stack[-1]
+#  Función para agregar nombres a la cola (primero en entrar, primero en salir)
+def agregar_nombres():
+    print("🔹 Agregue 5 nombres:")
+    for i in range(5):
+        nombre = input(f"Ingrese el nombre #{i+1}: ")
+        cola_nombres.append(nombre)
+        print(f" Nombre '{nombre}' agregado a la cola.")
 
-  def isEmpty(self):
-    return len(self.stack) == 0
+# Función para eliminar el primer nombre ingresado (FIFO)
+def sacar_nombre():
+    print("\n🔸 Eliminando el primer nombre ingresado (FIFO)...")
+    if cola_nombres:
+        nombre = cola_nombres.pop(0)
+        print(f" Nombre '{nombre}' eliminado de la cola.")
+    else:
+        print(" La cola está vacía. No hay nada que eliminar.")
 
-  def size(self):
-    return len(self.stack)
+#  Función para mostrar el contenido actual de la cola
+def mostrar_cola():
+    print("\n Contenido actual de la cola (de primero a último):")
+    if cola_nombres:
+        for i, nombre in enumerate(cola_nombres, 1):
+            print(f"{i}. {nombre}")
+    else:
+        print(" La cola está vacía.")
 
-# Create a stack
-myStack = Stack()
-
-myStack.push('A')
-myStack.push('B')
-myStack.push('C')
-
-print("Stack: ", myStack.stack)
-print("Pop: ", myStack.pop())
-print("Stack after Pop: ", myStack.stack)
-print("Peek: ", myStack.peek())
-print("isEmpty: ", myStack.isEmpty())
-print("Size: ", myStack.size())
+#  Ejecución del programa
+agregar_nombres()
+mostrar_cola()
+sacar_nombre()
+mostrar_cola()
