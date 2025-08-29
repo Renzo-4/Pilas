@@ -1,3 +1,5 @@
+#Last in firt out
+
 class PilaFia:
   def __init__(self):
     self.stack = []
