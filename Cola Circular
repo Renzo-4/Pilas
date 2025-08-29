@@ -1,0 +1,68 @@
+class ColaCircular:
+    def __init__(self, capacidad):
+        self.capacidad = capacidad
+        self.cola = [None] * capacidad
+        self.frente = 0
+        self.final = -1
+        self.tamano = 0
+
+    def isEmpty(self):
+        return self.tamano == 0
+
+    def isFull(self):
+        return self.tamano == self.capacidad
+
+    def size(self):
+        return self.tamano
+
+    def enqueue(self, elemento):
+        if self.isFull():
+            return "La cola está llena"
+        self.final = (self.final + 1) % self.capacidad
+        self.cola[self.final] = elemento
+        self.tamano += 1
+
+    def enqueue_front(self, elemento):
+        if self.isFull():
+            return "La cola está llena"
+        self.frente = (self.frente - 1) % self.capacidad
+        self.cola[self.frente] = elemento
+        self.tamano += 1
+
+    def dequeue(self):
+        if self.isEmpty():
+            return "La cola está vacía"
+        elemento = self.cola[self.frente]
+        self.cola[self.frente] = None
+        self.frente = (self.frente + 1) % self.capacidad
+        self.tamano -= 1
+        return elemento
+
+    def peek(self):
+        if self.isEmpty():
+            return "La cola está vacía"
+        return self.cola[self.frente]
+
+    def mostrar(self):
+        elementos = []
+        idx = self.frente
+        for _ in range(self.tamano):
+            elementos.append(self.cola[idx])
+            idx = (idx + 1) % self.capacidad
+        return elementos
+
+
+# Ejemplo de uso
+cola = ColaCircular(5)
+
+cola.enqueue("Aldo")
+cola.enqueue("Bianca")
+cola.enqueue("Carlos")
+print("Cola:", cola.mostrar())
+print("Primer elemento:", cola.peek())
+print("Elimina:", cola.dequeue())
+print("Cola después de eliminar:", cola.mostrar())
+cola.enqueue("Diana")
+print("Cola después de agregar:", cola.mostrar())
+cola.enqueue_front("Elena")
+print("Cola después de agregar al frente:", cola.mostrar())
