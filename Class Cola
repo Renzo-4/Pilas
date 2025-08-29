@@ -1,3 +1,5 @@
+#Firts in firt out
+
 class ColaFia:
   def __init__(self):
     self.queue = []
