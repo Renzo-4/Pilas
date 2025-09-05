@@ -1,5 +1,5 @@
 # Ejemplo de implementación de un árbol genealógico en Python
-# Abol no binario, cada nodo puede tener múltiples hijos
+# Arbol no binario, cada nodo puede tener múltiples hijos
 # Cada nodo representa a una persona con su nombre  
 #Es el constructor de la clase. Se ejecuta cuando se crea una nueva instancia del árbol
 class Arbol:
@@ -20,11 +20,23 @@ def buscarSubarbol(arbol, elemento):
         if (arbolBuscado != None):
             return arbolBuscado
     return None
+
+def eliminarHijo(arbol, elementoPadre, elementoHijo):
+    padre = buscarSubarbol(arbol, elementoPadre)
+    if padre:
+        nuevos_hijos = []
+        for hijo in padre.hijos:
+            if hijo.elemento != elementoHijo:
+                nuevos_hijos.append(hijo)
+        padre.hijos = nuevos_hijos
+    else:
+        print(f"No se encontró el padre '{elementoPadre}'.")
+
 # Ejemplo de uso
-abuela = "Inocenta Arce"
-hija1 = "Delia Lescano"
-hija2 = "Sontos Lescano"
-hija3 = "Vicenta Lescano"
+abuela = "Elisabet"
+hija1 = "Alicia"
+hija2 = "Abigail"
+hija3 = "Luz"
 nieto1 = "Ramiro Leon"
 nieta2 = "Norma Leon"
 nieta3 = "Rocio Leon"
@@ -50,5 +62,9 @@ def imprimirArbol(arbol, nivel=0):
 
 
 
+
+
+
 # Imprimir el árbol
 imprimirArbol(arbol)
+eliminarHijo(arbol, "Alicia", "Norma Leon")  # Elimina solo a Norma Leon como hija de Alicia
