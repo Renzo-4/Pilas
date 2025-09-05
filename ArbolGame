@@ -1,4 +1,3 @@
-
 import pygame
 import sys
 
@@ -21,12 +20,17 @@ def buscarSubarbol(arbol, elemento):
             return arbolBuscado
     return None
 
+def eliminarHijo(arbol, elementoPadre, elementoHijo):
+    padre = buscarSubarbol(arbol, elementoPadre)
+    if padre:
+        padre.hijos = [hijo for hijo in padre.hijos if hijo.elemento != elementoHijo]
+
 # Datos del árbol
 abuela = "Inocenta"
 hija1 = "Deliao"
 hija2 = "Santos"
 hija3 = "Vicenta"
-#neto1 = "Ramiro"
+nieto1 = "Ramiro"
 nieta2 = "Norma"
 nieta3 = "Rocio"
 nieto4 = "Rosario"
@@ -36,15 +40,15 @@ arbol = Arbol(abuela)
 
 agregarElemento(arbol, hija2, abuela)
 agregarElemento(arbol, hija3, abuela)
-#gregarElemento(arbol, nieto5, hija3)
+agregarElemento(arbol, nieto5, hija3)
 agregarElemento(arbol, nieto4, hija2)
 agregarElemento(arbol, hija1, abuela)
-#gregarElemento(arbol, nieto1, hija1)
+agregarElemento(arbol, nieto1, hija2)
 agregarElemento(arbol, nieta2, hija1)
 agregarElemento(arbol, nieta3, hija1)
 agregarElemento(arbol, nieto6, hija1)
 
-
+eliminarHijo(arbol, "Deliao", "Norma")
 
 # Pygame
 pygame.init()
